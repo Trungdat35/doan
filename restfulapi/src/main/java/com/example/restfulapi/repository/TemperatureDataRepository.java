@@ -1,5 +1,6 @@
 package com.example.restfulapi.repository;
 
+import com.example.restfulapi.model.HumidityData;
 import com.example.restfulapi.model.TemperatureData;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -20,4 +21,6 @@ public interface TemperatureDataRepository extends JpaRepository<TemperatureData
 
     @Query(value = "SELECT COUNT(*) FROM temperature_data WHERE recorded_at = :date",nativeQuery = true)
     int findByDate(@Param("date")LocalDate date);
+
+    TemperatureData findByRecordedAt(LocalDateTime dateTime);
 }
